@@ -37,4 +37,7 @@ locals {
   garden_apiserver_version   = "latest"
   garden_controller_image    = "rfranzke/garden-controller-manager"
   garden_controller_version  = "latest"
+
+  external_dns_image         = "mandelsoft/external-dns"
+  external_dns_version       = "v0.4.8-ms-3"
 }
