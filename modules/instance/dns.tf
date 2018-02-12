@@ -56,7 +56,7 @@ module "ingress_record" {
 
   config = "${var.dns}"
 
-  active = "${module.provide_lbaas.value}"
+  active = "${module.provide_lbaas_ingress.value}"
   names  = "${slice(module.cluster.ingress_domains, 0,  (module.configure_additional_dns.flag ? 1 + length(var.additional_domains) : 1))}"
   type   = "${module.vip_type_nginx.value}"
   ttl    = "300"
@@ -80,7 +80,7 @@ module "identity_record" {
 
   config = "${var.dns}"
 
-  active = "${module.provide_lbaas.value}"
+  active = "${module.provide_lbaas_ingress.value}"
   name   = "${module.cluster.identity}"
   type   = "${module.vip_type_nginx.value}"
   ttl    = "300"
