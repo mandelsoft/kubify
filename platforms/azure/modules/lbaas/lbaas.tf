@@ -91,7 +91,7 @@ resource "azurerm_lb_probe" "lb" {
 }
 
 output "vip_address" {
-  value = "${azurerm_public_ip.lb.ip_address}"
+  value = "${element(concat(azurerm_public_ip.lb.*.ip_address,list("")),0)}"
 }
 output "vip_type" {
   value = "A"
@@ -101,7 +101,7 @@ locals {
   pool_ids = "${compact(concat(azurerm_lb_backend_address_pool.lb.*.id,list("")))}"
 }
 output "pool_id" {
-  value = "${azurerm_lb_backend_address_pool.lb.id}"
+  value = "${element(concat(azurerm_lb_backend_address_pool.lb.*.id,list("")),0)}"
 }
 output "pool_ids" {
   value = "${local.pool_ids}"
